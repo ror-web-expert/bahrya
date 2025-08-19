@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahrya - Under Construction</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Bahrya Restaurants - Coming Soon</title>
+    <meta name="description" content="Bahrya Restaurants - Premium dining experience coming soon. Get notified when we launch!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            /* Professional Color System */
+            --primary-gradient: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+            --accent-gold: #f59e0b;
+            --accent-gold-light: #fbbf24;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --shadow-primary: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --shadow-glow: 0 0 40px rgba(245, 158, 11, 0.3);
+            
+            /* Brand Colors from User Palette */
+            --brand-primary: #041e49;
+            --brand-secondary: #0b57d0;
+            --brand-tertiary: #198639;
+            --construction-red: #dc2626;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,396 +36,295 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            background: var(--primary-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Optimized Background Effects */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+            color: var(--text-primary);
+            max-width: 800px;
+            padding: 3rem 2rem;
+            position: relative;
+            z-index: 10;
+            background: var(--glass-bg);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-primary);
+            width: 100%;
+        }
+
+        /* Logo Section */
+        .logo-container {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInScale 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
+        }
+
+        .logo {
+            max-width: 280px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            border-radius: 12px;
+            box-shadow: var(--shadow-primary);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: logoGlow 8s ease-in-out infinite;
+        }
+
+        .logo:hover {
+            transform: scale(1.08) rotate(2deg);
+            box-shadow: var(--shadow-primary), var(--shadow-glow);
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.5));
+                transform: scale(1.02);
+            }
+        }
+
+        /* Company Name */
+        .company-name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            background: linear-gradient(135deg, 
+                var(--brand-primary), var(--brand-secondary), var(--brand-tertiary),
+                #1b6ef3, #4c8df6, #7cacf8, #3998d3, #5ab3f0,
+                #198639, #37be5f, #6dd58c
+            );
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInFromLeft 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.6s forwards,
+                       gradientFlow 15s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(27, 110, 243, 0.3);
+        }
+
+        @keyframes gradientFlow {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 200% 50%; }
+            75% { background-position: 300% 50%; }
+        }
+
+        /* Under Construction */
+        .under-construction {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            opacity: 0;
+            color: var(--construction-red);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            animation: typewriter 3s steps(25) 1.2s forwards,
+                       constructionPulse 2s ease-in-out 4.5s infinite;
+            border-right: 3px solid var(--construction-red);
+            white-space: nowrap;
             overflow: hidden;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+
+        @keyframes typewriter {
+            from { width: 0; opacity: 0; }
+            to { width: 100%; opacity: 1; }
+        }
+
+        @keyframes constructionPulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 30px rgba(220, 38, 38, 0.8);
+            }
+        }
+
+        /* Description */
+        .description {
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 1.8s forwards;
+        }
+
+        /* Coming Soon */
+        .coming-soon {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            opacity: 0;
+            color: var(--accent-gold);
+            animation: fadeInUp 1s ease-out 2.1s forwards,
+                       glow 3s ease-in-out 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(245, 158, 11, 0.8);
+            }
+        }
+
+        /* Progress Section */
+        .progress-container {
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 2.4s forwards;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
             position: relative;
         }
 
-        /* Animated background particles */
-        body::before {
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+            border-radius: 8px;
+            width: 0%;
+            animation: loadProgress 2s ease-out 3s forwards;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+            position: relative;
+        }
+
+        .progress-fill::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="10" cy="50" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="30" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            animation: float 20s ease-in-out infinite;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
         }
 
-        .container {
-            text-align: center;
-            color: white;
-            max-width: 600px;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-container {
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInScale 1s ease 0.2s forwards;
-        }
-
-        .logo {
-            max-width: 200px;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-            margin: 0 auto;
-            display: block;
-            animation: logoMegaPulse 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
-        }
-
-        .logo:hover {
-            transform: scale(1.8) rotate(20deg);
-            animation-play-state: paused;
-            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.8)) brightness(1.4);
-        }
-
-        .company-name {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            opacity: 0;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b, #eb4d4b);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInFromLeft 1s ease 0.5s forwards, 
-                       gradientShift 3s ease-in-out infinite,
-                       textPulse 2s ease-in-out infinite;
-            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-        }
-
-        .under-construction {
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            animation: typeWriter 2s ease 1s forwards, 
-                       blink 1s infinite 3s, 
-                       textBounce 2s ease 4s infinite,
-                       underConstructionGlow 3s ease-in-out 5s infinite;
-            border-right: 3px solid white;
-            white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease 1.5s forwards, textFloat 3s ease-in-out 3s infinite;
-        }
-
-        .coming-soon {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: bounce 2s ease 2s infinite, colorShift 3s ease-in-out infinite;
-            color: #ffd700;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .progress-container {
-            margin: 2rem 0;
-            opacity: 0;
-            animation: fadeInUp 1s ease 2.5s forwards;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-            border-radius: 10px;
-            width: 0%;
-            animation: loadProgress 3s ease 3s forwards;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .progress-text {
-            font-size: 0.9rem;
-            opacity: 0.8;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
+        /* Social Links */
         .social-links {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             opacity: 0;
-            animation: fadeInUp 1s ease 3.5s forwards;
+            animation: fadeInUp 1s ease-out 2.7s forwards;
         }
 
         .social-link {
-            display: inline-block;
-            margin: 0 1rem;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin: 0 0.75rem;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
             text-decoration: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .social-link:hover {
-            color: #ffd700;
-            transform: translateY(-5px) scale(1.2);
+            color: var(--accent-gold);
+            background: rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
         }
 
+        /* Notification */
         .notification {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
             padding: 1rem 1.5rem;
-            border-radius: 10px;
-            color: white;
+            border-radius: 16px;
+            color: var(--text-primary);
             font-size: 0.9rem;
+            font-weight: 500;
             opacity: 0;
-            animation: slideInFromRight 1s ease 4s forwards;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideInFromRight 1s ease-out 3.5s forwards;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-primary);
         }
 
         /* Enhanced Animations */
-        @keyframes logoMegaPulse {
-            0%, 100% {
-                transform: scale(1.2);
-                filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4)) brightness(1);
-            }
-            25% {
-                transform: scale(1.6);
-                filter: drop-shadow(0 0 50px rgba(255, 215, 0, 0.7)) brightness(1.5);
-            }
-            50% {
-                transform: scale(1.3);
-                filter: drop-shadow(0 0 40px rgba(78, 205, 196, 0.6)) brightness(1.3);
-            }
-            75% {
-                transform: scale(1.7);
-                filter: drop-shadow(0 0 60px rgba(255, 107, 107, 0.8)) brightness(1.6);
-            }
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes textPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-            }
-            50% {
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
-            }
-        }
-
-        @keyframes textGlow {
-            0%, 100% {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-                transform: scale(1);
-            }
-            50% {
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 
-                           0 0 30px rgba(255,255,255,0.4),
-                           0 0 40px rgba(255, 215, 0, 0.3);
-                transform: scale(1.03);
-            }
-        }
-
-        @keyframes underConstructionGlow {
-            0%, 100% {
-                transform: scale(1);
-                background-position: 0% 50%;
-                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
-            }
-            25% {
-                transform: scale(1.05);
-                background-position: 100% 50%;
-                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.6));
-            }
-            50% {
-                transform: scale(1.08);
-                background-position: 200% 50%;
-                filter: drop-shadow(0 0 25px rgba(78, 205, 196, 0.7));
-            }
-            75% {
-                transform: scale(1.03);
-                background-position: 300% 50%;
-                filter: drop-shadow(0 0 15px rgba(69, 183, 209, 0.5));
-            }
-        }
-
-        @keyframes textBounce {
-            0%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            25% {
-                transform: translateY(-8px) scale(1.03);
-            }
-            50% {
-                transform: translateY(-5px) scale(1.02);
-            }
-            75% {
-                transform: translateY(-10px) scale(1.05);
-            }
-        }
-
-        @keyframes textFloat {
-            0%, 100% {
-                transform: translateY(0px) scale(1);
-            }
-            33% {
-                transform: translateY(-8px) scale(1.01);
-            }
-            66% {
-                transform: translateY(5px) scale(0.99);
-            }
-        }
-
-        @keyframes colorShift {
-            0% {
-                color: #ffd700;
-                text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
-            }
-            20% {
-                color: #ff6b6b;
-                text-shadow: 0 0 15px rgba(255, 107, 107, 0.8), 0 0 30px rgba(255, 107, 107, 0.4);
-            }
-            40% {
-                color: #4ecdc4;
-                text-shadow: 0 0 15px rgba(78, 205, 196, 0.8), 0 0 30px rgba(78, 205, 196, 0.4);
-            }
-            60% {
-                color: #45b7d1;
-                text-shadow: 0 0 15px rgba(69, 183, 209, 0.8), 0 0 30px rgba(69, 183, 209, 0.4);
-            }
-            80% {
-                color: #f9ca24;
-                text-shadow: 0 0 15px rgba(249, 202, 36, 0.8), 0 0 30px rgba(249, 202, 36, 0.4);
-            }
-            100% {
-                color: #ffd700;
-                text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
-            }
-        }
-
         @keyframes fadeInScale {
             from {
                 opacity: 0;
-                transform: scale(0.2) rotate(-20deg);
+                transform: scale(0.8) translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: scale(1) rotate(0deg);
+                transform: scale(1) translateY(0);
             }
         }
 
         @keyframes slideInFromLeft {
             from {
                 opacity: 0;
-                transform: translateX(-150px) scale(0.7) rotate(-5deg);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes typeWriter {
-            0% {
-                opacity: 0;
-                width: 0;
-                transform: scale(0.8);
-            }
-            30% {
-                opacity: 0.7;
-                transform: scale(0.95);
-            }
-            70% {
-                opacity: 1;
-                transform: scale(1.02);
-            }
-            100% {
-                opacity: 1;
-                width: 100%;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            40% {
-                transform: translateY(-20px) scale(1.08);
-            }
-            60% {
-                transform: translateY(-12px) scale(1.04);
-            }
-        }
-
-        @keyframes loadProgress {
-            from {
-                width: 0%;
-            }
-            to {
-                width: 75%;
-            }
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
+                transform: translateX(-60px);
             }
             to {
                 opacity: 1;
@@ -411,39 +332,42 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Blinking cursor effect */
-        @keyframes blink {
-            0%, 50% {
-                border-color: white;
-                box-shadow: 2px 0 0 white;
-            }
-            51%, 100% {
-                border-color: transparent;
-                box-shadow: none;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .under-construction {
-            animation: typeWriter 2s ease 1s forwards, blink 1s infinite 3s;
+        @keyframes loadProgress {
+            from { width: 0%; }
+            to { width: 85%; }
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .company-name {
-                font-size: 2.5rem;
+            .container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
             }
             
-            .under-construction {
-                font-size: 1.2rem;
+            .logo {
+                max-width: 220px;
             }
             
             .notification {
@@ -454,211 +378,122 @@
             }
         }
 
-        /* Floating elements enhancement */
-        .floating-element {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.15);
-            font-size: 2rem;
-            animation: floatAroundEnhanced 20s linear infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 5s;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 10s;
-        }
-
-        .floating-element:nth-child(4) {
-            top: 15%;
-            right: 25%;
-            animation-delay: 15s;
-        }
-
-        .floating-element:nth-child(5) {
-            bottom: 20%;
-            right: 30%;
-            animation-delay: 7s;
-        }
-
-        .floating-element:nth-child(6) {
-            top: 70%;
-            left: 5%;
-            animation-delay: 12s;
-        }
-
-        @keyframes floatAroundEnhanced {
-            0% {
-                transform: translateY(0px) rotate(0deg) scale(1);
-                opacity: 0.1;
+        @media (max-width: 480px) {
+            body {
+                padding: 0.5rem;
             }
-            25% {
-                transform: translateY(-50px) rotate(90deg) scale(1.2);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(30px) rotate(180deg) scale(0.8);
-                opacity: 0.15;
-            }
-            75% {
-                transform: translateY(-30px) rotate(270deg) scale(1.1);
-                opacity: 0.25;
-            }
-            100% {
-                transform: translateY(0px) rotate(360deg) scale(1);
-                opacity: 0.1;
+            
+            .container {
+                padding: 1.5rem 1rem;
             }
         }
 
-        /* Particle System */
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: particleFloat 6s linear infinite;
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
-        .particle:nth-child(odd) {
-            background: rgba(255, 215, 0, 0.8);
-            animation-duration: 8s;
+        /* Focus States for Accessibility */
+        .social-link:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
         }
 
-        .particle:nth-child(3n) {
-            background: rgba(78, 205, 196, 0.8);
-            animation-duration: 10s;
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) translateX(100px) rotate(360deg);
-                opacity: 0;
-            }
+        .logo:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 4px;
+            border-radius: 12px;
         }
     </style>
 </head>
 <body>
-    <!-- Floating decorative elements -->
-    <div class="floating-element"><i class="fas fa-cog"></i></div>
-    <div class="floating-element"><i class="fas fa-rocket"></i></div>
-    <div class="floating-element"><i class="fas fa-code"></i></div>
-    <div class="floating-element"><i class="fas fa-star"></i></div>
-    <div class="floating-element"><i class="fas fa-heart"></i></div>
-    <div class="floating-element"><i class="fas fa-bolt"></i></div>
-
-    <!-- Particle System -->
-    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-    <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-    <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-    <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-    <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-    <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
-    <div class="particle" style="left: 15%; animation-delay: 3.5s;"></div>
-
     <div class="container">
         <div class="logo-container">
-            <img src="logo.jpeg" alt="Bahrya Logo" class="logo">
+            <img src="logo.jpeg" alt="Bahrya Restaurants Logo" class="logo" loading="eager">
         </div>
         
-        <h1 class="company-name">BAHRYA</h1>
+        <h1 class="company-name">BAHRYA RESTAURANTS</h1>
         
-        <div class="under-construction">Under Construction</div>
+        <div class="under-construction">Website Under Construction</div>
         
         <p class="description">
-            We're working hard to bring you something amazing.<br>
-            Our website is currently being built with love and attention to detail.
+            We're crafting an extraordinary dining experience.<br>
+            Our website is being built with passion and attention to every detail.
         </p>
         
-        <div class="coming-soon">Coming Soon!</div>
+        <div class="coming-soon">Opening Soon!</div>
         
         <div class="progress-container">
             <div class="progress-bar">
                 <div class="progress-fill"></div>
             </div>
-            <div class="progress-text">Progress: 75% Complete</div>
+            <div class="progress-text">Progress: 85% Complete</div>
         </div>
         
         <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
         </div>
     </div>
 
     <div class="notification">
-        <i class="fas fa-bell"></i> Get notified when we launch!
+        <i class="fas fa-bell"></i> Be the first to know when we launch!
     </div>
 
     <script>
-        // Add some interactive effects
-        document.addEventListener('mousemove', (e) => {
-            const cursor = document.createElement('div');
-            cursor.className = 'cursor-trail';
-            cursor.style.cssText = `
-                position: fixed;
-                width: 10px;
-                height: 10px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                pointer-events: none;
-                left: ${e.clientX - 5}px;
-                top: ${e.clientY - 5}px;
-                animation: fade 1s ease forwards;
-                z-index: 1000;
-            `;
-            document.body.appendChild(cursor);
-            
-            setTimeout(() => {
-                cursor.remove();
-            }, 1000);
-        });
-
-        // Add fade animation for cursor trail
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fade {
-                to {
-                    opacity: 0;
-                    transform: scale(2);
-                }
+        // Optimized performance and accessibility
+        document.addEventListener('DOMContentLoaded', function() {
+            // Preload critical images
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                const img = new Image();
+                img.src = logo.src;
             }
-        `;
-        document.head.appendChild(style);
 
-        // Logo click effect
-        document.querySelector('.logo').addEventListener('click', function() {
-            this.style.animation = 'none';
-            setTimeout(() => {
-                this.style.animation = '';
-            }, 10);
+            // Enhanced logo interaction
+            logo?.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+
+            // Smooth scroll for better UX (if needed later)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    target?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            });
         });
+
+        // Performance monitoring
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            });
+        }
     </script>
 </body>
 </html>
